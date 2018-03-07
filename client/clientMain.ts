@@ -13,13 +13,13 @@ export function activate(context: ExtensionContext) {
   }
 
   const clientOptions: LanguageClientOptions = {
-    documentSelector: [{ scheme: 'file', language: 'plaintext' }],
+    documentSelector: [{ scheme: 'file', language: 'markdown' }],
     synchronize: {
       configurationSection: []
     }
   }
 
-  const client = new LanguageClient('pls', 'Plaintext Language Server', serverOptions, clientOptions)
+  const client = new LanguageClient('pls', 'Markdown Language Server', serverOptions, clientOptions)
   const disposable = client.start()
   context.subscriptions.push(disposable)
 }
