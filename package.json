@@ -6,8 +6,9 @@
   "version": "0.0.1",
   "publisher": "octref",
   "scripts": {
-    "watch-client": "tsc -w -p tsconfig-dev.json",
-    "watch-server": "tsc -w -p server/tsconfig-dev.json",
+    "compile": "tsc -p tsconfig.json && tsc -p server/tsconfig.json",
+    "watch-client": "tsc -w -p tsconfig.json",
+    "watch-server": "tsc -w -p server/tsconfig.json",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "engines": {
