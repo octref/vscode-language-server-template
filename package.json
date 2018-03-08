@@ -20,7 +20,7 @@
     "vscode-languageserver-types": "^3.6.0"
   },
   "activationEvents": [
-    "onLanguage:plaintext"
+    "onLanguage:markdown"
   ],
   "main": "./dist/clientMain",
   "contributes": {},
