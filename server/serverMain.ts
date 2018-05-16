@@ -61,8 +61,9 @@ connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
 })
 
 connection.onDidChangeTextDocument(params => {
-  console.log(`${params.textDocument.uri} changeddd`)
+  console.log(`${params.textDocument.uri} changed`)
   console.log(`${JSON.stringify(params.contentChanges, null, 2)}`)
+  connection.sendNotification('hello')
 })
 
 connection.listen()

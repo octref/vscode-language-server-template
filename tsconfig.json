@@ -6,6 +6,10 @@
     "lib": ["es6"],
     "sourceMap": true
   },
+  "include": [
+    "client",
+    "test"
+  ],
   "exclude": [
     "node_modules",
     "server"
