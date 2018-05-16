@@ -19,7 +19,7 @@ export function activate(context: ExtensionContext) {
     }
   }
 
-  const client = new LanguageClient('pls', 'Markdown Language Server', serverOptions, clientOptions)
+  const client = new LanguageClient('mls', 'Markdown Language Server', serverOptions, clientOptions)
   const disposable = client.start()
   context.subscriptions.push(disposable)
 }

@@ -4,8 +4,12 @@
     "target": "es6",
     "outDir": "dist",
     "lib": ["es6"],
+    // Dev only
     "sourceMap": true
   },
+  "include": [
+    "client"
+  ],
   "exclude": [
     "node_modules",
     "server"
