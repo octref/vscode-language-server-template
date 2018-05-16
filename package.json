@@ -11,7 +11,7 @@
     "watch-server": "tsc -w -p server/tsconfig.json",
     "watch": "concurrently \"npm run watch-client\" \"npm run watch-server\"",
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "jest"
+    "test": "npm run compile && CODE_TESTS_PATH=/Users/octref/Code/lsp-test/vscode-language-server-template/dist/test CODE_TESTS_WORKSPACE=./test-proj node ./node_modules/vscode/bin/test"
   },
   "engines": {
     "vscode": "^1.23.0"

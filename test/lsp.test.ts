@@ -18,9 +18,9 @@ import { TextDocument, Position, CompletionContext, CancellationToken } from 'vs
 // Defines a Mocha test suite to group tests of similar kind together
 
 let client: LanguageClient
-suite('Extension Tests', () => {
+suite('LSP Simple Test', () => {
   const serverModule = path.resolve(__dirname, '../..')
-  const middleware: Middleware = {
+  const middleware = {
     didOpen(doc) {
       console.log(doc)
     },
@@ -37,11 +37,13 @@ suite('Extension Tests', () => {
       return (response as CompletionList)
     }
   }
-  client = createLanguageClient(serverModule, middleware)
+  client = createLanguageClient(serverModule, middleware as any)
 
   // Defines a Mocha unit test
   test('Test LSP', done => {
-    client.onReady().then(() => {})
+    client.onReady().then(() => {
+      done()
+    })
 
     client.start()
   })
