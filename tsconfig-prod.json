@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
+    // Basic
     "module": "commonjs",
     "target": "es6",
-    "strict": true,
+
+    // Output
     "outDir": "dist",
+    // Dev Only
+    // "sourceMap": true,
+
+    // Lib
     "lib": ["es6"],
-    // Prod only
-    "noImplicitAny": true,
-    "noUnusedLocals": true
+
+    // Strictness
+    "strict": true,
+    "noUnusedLocals": true,
   },
-  "exclude": [
-    "node_modules",
-    "server"
+  "include": [
+    "client"
   ]
 }

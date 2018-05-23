@@ -11,14 +11,17 @@ import {
   TextDocumentSyncKind
 } from 'vscode-languageserver'
 
-const connection: IConnection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process))
+const connection: IConnection = createConnection(
+  new IPCMessageReader(process),
+  new IPCMessageWriter(process)
+)
 const documents: TextDocuments = new TextDocuments()
 documents.listen(connection)
 
 connection.onInitialize((params): InitializeResult => {
   return {
     capabilities: {
-      textDocumentSync: TextDocumentSyncKind.Incremental,
+      textDocumentSync: TextDocumentSyncKind.Full,
       completionProvider: {
         resolveProvider: true
       }
@@ -34,20 +37,22 @@ connection.onDidChangeWatchedFiles(change => {
   console.log('didChangeWatchedFiles')
 })
 
-connection.onCompletion((position: TextDocumentPositionParams): CompletionItem[] => {
-  return [
-    {
-      label: 'TypeScript',
-      kind: CompletionItemKind.Text,
-      data: 1
-    },
-    {
-      label: 'JavaScript',
-      kind: CompletionItemKind.Text,
-      data: 2
-    }
-  ]
-})
+connection.onCompletion(
+  (position: TextDocumentPositionParams): CompletionItem[] => {
+    return [
+      {
+        label: 'TypeScript',
+        kind: CompletionItemKind.Text,
+        data: 1
+      },
+      {
+        label: 'JavaScript',
+        kind: CompletionItemKind.Text,
+        data: 2
+      }
+    ]
+  }
+)
 
 connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
   if (item.data === 1) {

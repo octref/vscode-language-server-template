@@ -1,7 +1,12 @@
 import * as path from 'path'
 
 import { ExtensionContext } from 'vscode'
-import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient'
+import {
+  LanguageClient,
+  LanguageClientOptions,
+  ServerOptions,
+  TransportKind
+} from 'vscode-languageclient'
 
 export function activate(context: ExtensionContext) {
   const serverModule = context.asAbsolutePath(path.join('server', 'dist', 'serverMain.js'))
@@ -9,11 +14,18 @@ export function activate(context: ExtensionContext) {
 
   const serverOptions: ServerOptions = {
     run: { module: serverModule, transport: TransportKind.ipc },
-    debug: { module: serverModule, transport: TransportKind.ipc, options: debugOptions }
+    debug: {
+      module: serverModule,
+      transport: TransportKind.ipc,
+      options: debugOptions
+    }
   }
 
   const clientOptions: LanguageClientOptions = {
-    documentSelector: [{ scheme: 'file', language: 'markdown' }],
+    documentSelector: [
+      { scheme: 'file', language: 'markdown' },
+      { scheme: 'untitled', language: 'markdown' }
+    ],
     synchronize: {
       configurationSection: []
     }
