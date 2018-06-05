@@ -1,6 +1,6 @@
 import * as path from 'path'
+import * as vscode from 'vscode'
 
-import { ExtensionContext } from 'vscode'
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -8,7 +8,7 @@ import {
   TransportKind
 } from 'vscode-languageclient'
 
-export function activate(context: ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) {
   const serverModule = context.asAbsolutePath(path.join('server', 'dist', 'serverMain.js'))
   const debugOptions = { execArgv: ['--nolazy', '--inspect=6006'] }
 
@@ -32,6 +32,7 @@ export function activate(context: ExtensionContext) {
   }
 
   const client = new LanguageClient('mls', 'Markdown Language Server', serverOptions, clientOptions)
+
   const disposable = client.start()
   context.subscriptions.push(disposable)
 }
