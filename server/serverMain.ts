@@ -29,9 +29,10 @@ connection.onInitialize((params): InitializeResult => {
   }
 })
 
-documents.onDidChangeContent(change => {
-  console.log('didChangeContent')
-})
+// This one cannot co-exist with connection.onDidChangeTextDocument
+// documents.onDidChangeContent(change => {
+//   console.log('didChangeContent')
+// })
 
 connection.onDidChangeWatchedFiles(change => {
   console.log('didChangeWatchedFiles')
