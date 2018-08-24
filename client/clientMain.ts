@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
   const debugOptions = { execArgv: ['--nolazy', '--inspect=6006'] }
 
   const config = vscode.workspace.getConfiguration('mls.debug.log')
-  let socket: WebSocket = undefined;
+  let socket: WebSocket | null = null
   if (config) {
     if (config.output === 'websocket' && config.port) {
       socket = new WebSocket(`ws://localhost:${config.get('port')}`)
@@ -47,14 +47,17 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable)
 }
 
+let log = ''
 const socketToChannel = (socket: WebSocket): vscode.OutputChannel => {
   return {
     name: 'websocket',
     append(value: string) {
-      socket.send(value)
+      log += value
     },
     appendLine(value: string) {
-      socket.send(value)
+      log += value
+      socket.send(log)
+      log = ''
     },
     clear() {},
     show() {},
